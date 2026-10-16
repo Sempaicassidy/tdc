@@ -55,7 +55,7 @@ If your skill is missing, add it to the right list in `data/skills.ts` in the sa
 
 - The grid has as many columns as the screen allows and as many rows as it needs.
 - The first tile adds you, the second opens the WhatsApp rules and invite, and every other tile is a member.
-- When there are fewer members than cells, members are scattered across the visible cells, leaving open spots you can click to add yourself.
+- When there are fewer members than cells, members are scattered across the visible cells, leaving open spots that show there is room for more people.
 - Tiles swap places every few seconds. The shuffle pauses while you hover a tile, search, or have a card open, and it is off for people who prefer reduced motion.
 - Five tags are picked at random from everyone's skills. Click one to filter, or use the shuffle button for a different set.
 - Each member card has its own link, for example `https://tdcdevs.xyz/#alphaolomi`.
@@ -73,6 +73,12 @@ bun run dev
 ```
 
 Then open [http://localhost:3000](http://localhost:3000).
+
+Linting and formatting use [Biome](https://biomejs.dev). Run `check` before opening a pull request, it formats the code and applies safe fixes.
+
+```bash
+bun run check
+```
 
 ```bash
 bun run lint
