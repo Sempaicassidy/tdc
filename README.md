@@ -1,121 +1,104 @@
-# Tanzania Developer Community (TDC)
+# Tanzania Developers Community (TDC)
 
-Welcome to the official repository for the Tanzania Developer Community (TDC) website. This project serves as a digital hub for developers in Tanzania, featuring a unique, interactive user interface inspired by desktop environments.
+The website of the Tanzania Developers Community. It is a single page: a grid of member tiles that fills any screen, with a search bar and skill tags to filter people, a tile to join the WhatsApp group, and a tile that explains how to add yourself.
 
-## 🚀 Overview
+There is no backend and no database. Every member lives in one file, [`data/members.ts`](data/members.ts), and the site grows as people add themselves to it through pull requests.
 
-The TDC website is designed to be more than just a landing page; it's an interactive experience. The core of the current interface is a dynamic "Folder" component that users can interact with, simulating a modern operating system's file explorer. This project showcases modern web development techniques using Next.js and Framer Motion.
+## Add yourself
 
-## 🛠️ Tech Stack
+1. Open [`data/members.ts`](data/members.ts) on GitHub and click the pencil icon. GitHub forks the repository for you if you do not have write access.
+2. Add your entry at the end of the `members` list.
+3. Commit, open a pull request, and your tile appears once it is merged.
 
-This project is built with the latest web technologies to ensure performance, scalability, and a premium user experience:
+```ts
+{
+  name: "Your Name",
+  github: "your-github-username",
+  title: "Frontend Engineer",
+  location: "Dar es Salaam",
+  bio: "One or two sentences about what you build.",
+  skills: {
+    languages: ["TypeScript"],
+    frontend: ["React", "Next.js"],
+    design: ["Figma"],
+  },
+  links: {
+    website: "https://your-site.dev",
+    linkedin: "https://linkedin.com/in/you",
+    x: "yourhandle",
+  },
+  openToWork: true,
+  hireContact: "you@example.com",
+},
+```
 
--   **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
--   **Language**: [TypeScript](https://www.typescriptlang.org/)
--   **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
--   **Animations**: [Framer Motion](https://www.framer.com/motion/)
--   **Icons**: [Lucide React](https://lucide.dev/)
--   **UI Components**: Custom components with shadcn/ui integration
--   **Package Manager**: pnpm (recommended) / npm / yarn
+| Field | What it does |
+| --- | --- |
+| `name` | Your full name. Required. |
+| `github` | Your GitHub username. Required, your photo comes from it. |
+| `avatar` | Optional image URL if you prefer a different photo. |
+| `title` | A short role, like Mobile Engineer. |
+| `location` | A city or country. |
+| `bio` | One or two sentences, up to 200 characters. |
+| `skills` | Your stack, grouped by category. See below. |
+| `links` | Any of `website`, `linkedin`, `x` and `email`. |
+| `openToWork` | Set to `true` to show a gold dot on your tile and a Hire me button on your card. |
+| `hireContact` | Where Hire me sends people, an email address or a link. Without it, your email, LinkedIn, website or GitHub is used, in that order. |
 
-## ✨ Features
+### Skills
 
-### Folder UI
-A custom-built, animated folder component that expands to reveal content with smooth spring-based transitions.
+Skills are grouped under `languages`, `frontend`, `backend`, `mobile`, `design`, `devops`, `data` and `ai`. The allowed values for each group live in [`data/skills.ts`](data/skills.ts), so your editor autocompletes them and the build fails on a typo. This keeps tags consistent across members, which is what makes the filter tags under the search bar work.
 
-### Developer Portfolio Page (`/portfolio`)
-- Showcases TDC community members with their GitHub profiles and portfolios
-- Dark theme with smooth scrolling animations
-- Elegant design with horizontal lines and fade effects
-- Direct links to member GitHub profiles and personal websites
+If your skill is missing, add it to the right list in `data/skills.ts` in the same pull request.
 
-### WhatsApp Community Rules (`/rules`)
-- Comprehensive community guidelines for the TDC WhatsApp group
-- 11 well-defined rules with emojis and descriptions
-- Direct "Join WhatsApp Group" button
-- Consistent dark theme and animations
+## How the page works
 
-### Custom 404 Page
-- Unique pixelated postcard design featuring Serengeti
-- Tanzania-themed error messaging
-- Smooth animations and interactive elements
+- The grid has as many columns as the screen allows and as many rows as it needs.
+- The first tile adds you, the second opens the WhatsApp rules and invite, and every other tile is a member.
+- When there are fewer members than cells, members are scattered across the visible cells, leaving open spots you can click to add yourself.
+- Tiles swap places every few seconds. The shuffle pauses while you hover a tile, search, or have a card open, and it is off for people who prefer reduced motion.
+- Five tags are picked at random from everyone's skills. Click one to filter, or use the shuffle button for a different set.
+- Each member card has its own link, for example `https://tdcdevs.xyz/#alphaolomi`.
 
-### Additional Features
-- **Responsive Design**: Optimized for both desktop and mobile devices
-- **Modern Animations**: Smooth, spring-based transitions throughout
-- **Dark Theme**: Consistent dark mode across all pages
-- **SEO Optimized**: Proper metadata, sitemap, and structured data
-- **Accessible**: Proper ARIA labels and semantic HTML
+## Development
 
-## 🏁 Getting Started
+This project uses [Bun](https://bun.sh).
 
-Follow these steps to get the project running on your local machine.
+```bash
+bun install
+```
 
-### Prerequisites
+```bash
+bun run dev
+```
 
-Ensure you have Node.js installed. We recommend using `pnpm` for package management.
+Then open [http://localhost:3000](http://localhost:3000).
 
-### Installation
+```bash
+bun run lint
+```
 
-1.  **Clone the repository:**
+```bash
+bun run build
+```
 
-    ```bash
-    git clone https://github.com/astrod333/tdc.git
-    cd tdc
-    ```
+## Project structure
 
-2.  **Install dependencies:**
+- `app/` Next.js App Router entry, layout, metadata, sitemap and the 404 page.
+- `components/community-grid.tsx` The grid, shuffle, filtering and dialog state.
+- `components/tiles.tsx` Member, action and open spot tiles.
+- `components/member-dialog.tsx`, `join-dialog.tsx`, `whatsapp-dialog.tsx` The cards that open from tiles.
+- `components/search-dock.tsx` The floating search bar and tags.
+- `data/members.ts` Every member of the community.
+- `data/skills.ts` The skill vocabulary used for tags.
+- `data/rules.ts` WhatsApp group rules.
+- `data/community.ts` Community links, including the WhatsApp invite and repository.
+- `lib/grid.ts` Grid sizing, scatter and shuffle logic.
+- `lib/members.ts` Search, tags and link helpers.
 
-    ```bash
-    pnpm install
-    # or
-    npm install
-    # or
-    yarn install
-    ```
+## Tech stack
 
-3.  **Run the development server:**
-
-    ```bash
-    pnpm dev
-    # or
-    npm run dev
-    # or
-    yarn dev
-    ```
-
-4.  **Open your browser:**
-    Navigate to [http://localhost:3000](http://localhost:3000) to view the application.
-
-## 📂 Project Structure
-
--   `app/`: Main application routes and pages (Next.js App Router)
-    -   `portfolio/`: Developer portfolio showcase
-    -   `rules/`: WhatsApp community rules
-    -   `not-found.tsx`: Custom 404 page
--   `components/`: Reusable UI components
-    -   `folder.tsx`: Folder navigation
-    -   `portfolio.tsx`: Portfolio page component
-    -   `rules.tsx`: Rules page component
-    -   `ui/`: UI components including 404 error page
--   `data/`: Data files
-    -   `developers.ts`: Community member information
-    -   `rules.ts`: WhatsApp community rules
--   `public/`: Static assets (images, icons, backgrounds)
-
-## 🎨 Pages
-
-### Home (`/`)
-Folder interface with background imagery showcasing Tanzania.
-
-### Portfolio (`/portfolio`)
-Browse through TDC community members, their GitHub profiles, and personal portfolios.
-
-### Rules (`/rules`)
-Read the WhatsApp community guidelines and join the group.
-
-### 404 Page
-Custom error page with Tanzania-themed design.
+Next.js 16, React 19, TypeScript, Tailwind CSS 4, Framer Motion, Radix Dialog and Lucide icons.
 
 ## 🤝 Contributing
 
@@ -134,10 +117,8 @@ If you find this project useful or interesting, please consider giving it a star
 [![GitHub stars](https://img.shields.io/github/stars/astrod333/tdc?style=social)](https://github.com/astrod333/tdc/stargazers)
 
 
-## 📄 License
+## License
 
-This project is open-source and available under the [MIT License](LICENSE).
-
----
+[MIT](LICENSE)
 
 Built with ❤️ by Astro.

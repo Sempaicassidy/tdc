@@ -1,20 +1,21 @@
-import { MetadataRoute } from 'next'
+import type { MetadataRoute } from "next";
+import { community } from "@/data/community";
 
 export default function manifest(): MetadataRoute.Manifest {
-    return {
-        name: 'Tanzania Developers Community',
-        short_name: 'TDC',
-        description: 'The official digital hub for developers in Tanzania. Connect, learn, and grow with the largest tech community in the region.',
-        start_url: '/',
-        display: 'standalone',
-        background_color: '#000000',
-        theme_color: '#000000',
-        icons: [
-            {
-                src: '/favicon.ico',
-                sizes: 'any',
-                type: 'image/x-icon',
-            },
-        ],
-    }
+  return {
+    name: community.name,
+    short_name: community.shortName,
+    description: "Meet the developers of Tanzania and join the TDC WhatsApp group.",
+    start_url: "/",
+    display: "standalone",
+    background_color: "#e8ebe4",
+    theme_color: "#e8ebe4",
+    icons: [
+      {
+        src: "/favicon.ico",
+        sizes: "any",
+        type: "image/x-icon",
+      },
+    ],
+  };
 }
