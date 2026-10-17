@@ -1,13 +1,12 @@
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
+import { community } from "@/data/community";
 
 export default function robots(): MetadataRoute.Robots {
-	const baseUrl = "https://tdcdevs.xyz";
-
 	return {
 		rules: {
 			userAgent: "*",
 			allow: "/",
 		},
-		sitemap: `${baseUrl}/sitemap.xml`,
+		sitemap: `${community.url}/sitemap.xml`,
 	};
 }

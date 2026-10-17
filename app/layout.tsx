@@ -1,22 +1,26 @@
+import type { Metadata, Viewport } from "next";
+import { Archivo } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { community } from "@/data/community";
 import "./globals.css";
 
-const inter = Inter({
-	variable: "--font-inter",
+const archivo = Archivo({
+	variable: "--font-archivo",
 	subsets: ["latin"],
+	axes: ["wdth"],
 });
 
-const baseUrl = "https://tdcdevs.xyz";
+const baseUrl = community.url;
+const title = "Tanzania Developers Community (TDC)";
+const description =
+	"Meet the developers of Tanzania. Browse members by skill, find people open to work, and join the TDC WhatsApp group.";
 
 export const metadata: Metadata = {
 	metadataBase: new URL(baseUrl),
-	title: "Tanzania Developers Community (TDC)",
-	description:
-		"The official digital hub for developers in Tanzania. Connect, learn, and grow with the largest tech community in the region.",
-	applicationName: "TDC",
-	authors: [{ name: "Tanzania Developer Community", url: baseUrl }],
+	title,
+	description,
+	applicationName: community.shortName,
+	authors: [{ name: community.name, url: baseUrl }],
 	generator: "Next.js",
 	keywords: [
 		"Tanzania",
@@ -30,10 +34,11 @@ export const metadata: Metadata = {
 		"Web Development",
 		"Programming",
 		"East Africa",
+		"Hire developers",
 	],
 	referrer: "origin-when-cross-origin",
-	creator: "Tanzania Developer Community",
-	publisher: "Tanzania Developer Community",
+	creator: community.name,
+	publisher: community.name,
 	robots: {
 		index: true,
 		follow: true,
@@ -48,19 +53,17 @@ export const metadata: Metadata = {
 	icons: {
 		icon: "/favicon.ico",
 	},
-
 	openGraph: {
-		title: "Tanzania Developers Community (TDC)",
-		description:
-			"The official digital hub for developers in Tanzania. Connect, learn, and grow with the largest tech community in the region.",
+		title,
+		description,
 		url: baseUrl,
-		siteName: "Tanzania Developers Community",
+		siteName: community.name,
 		images: [
 			{
 				url: `${baseUrl}/tdc.png`,
 				width: 1200,
 				height: 630,
-				alt: "Tanzania Developers Community",
+				alt: community.name,
 			},
 		],
 		locale: "en_US",
@@ -68,9 +71,8 @@ export const metadata: Metadata = {
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Tanzania Developers Community (TDC)",
-		description:
-			"The official digital hub for developers in Tanzania. Connect, learn, and grow with the largest tech community in the region.",
+		title,
+		description,
 		creator: "@tdc",
 		images: [`${baseUrl}/tdc.png`],
 	},
@@ -79,36 +81,36 @@ export const metadata: Metadata = {
 	},
 };
 
+export const viewport: Viewport = {
+	themeColor: [
+		{ media: "(prefers-color-scheme: light)", color: "#e8ebe4" },
+		{ media: "(prefers-color-scheme: dark)", color: "#0e1310" },
+	],
+};
+
+const jsonLd = {
+	"@context": "https://schema.org",
+	"@type": "Organization",
+	name: community.name,
+	alternateName: community.shortName,
+	url: baseUrl,
+	logo: `${baseUrl}/tdclogo.png`,
+	description,
+	sameAs: [community.repository],
+};
+
 export default function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	const jsonLd = {
-		"@context": "https://schema.org",
-		"@type": "Organization",
-		name: "Tanzania Developers Community",
-		alternateName: "TDC",
-		url: baseUrl,
-		logo: `${baseUrl}/tdclogo.png`,
-		description:
-			"The official digital hub for developers in Tanzania. Connect, learn, and grow with the largest tech community in the region.",
-		sameAs: [
-			// Add social media profiles here
-			// 'https://twitter.com/tdc',
-			// 'https://github.com/tdc',
-			// 'https://linkedin.com/company/tdc',
-		],
-	};
-
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body className={`${inter.variable} antialiased font-sans`}>
+			<body className={`${archivo.variable} font-sans antialiased`}>
 				<script
 					type="application/ld+json"
 					dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 				/>
-				<div className="absolute top-4 right-4 z-50"></div>
 				{children}
 				<Analytics />
 			</body>

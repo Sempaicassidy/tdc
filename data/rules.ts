@@ -1,77 +1,88 @@
-export interface Rule {
+import {
+	AtSign,
+	Ban,
+	CircleHelp,
+	Code,
+	GraduationCap,
+	Handshake,
+	Languages,
+	Link,
+	Lock,
+	MessageSquareText,
+	Target,
+	type LucideIcon,
+} from "lucide-react";
+
+export type Rule = {
 	title: string;
 	description: string;
-	emoji?: string;
-}
+	icon: LucideIcon;
+};
 
 export const rules: Rule[] = [
 	{
-		emoji: "🤝",
-		title: "Be Respectful",
+		icon: Handshake,
+		title: "Be respectful",
 		description:
-			"Treat all members with respect. No harassment, hate speech, or personal attacks will be tolerated.",
+			"Treat every member with respect. Harassment, hate speech and personal attacks are not tolerated.",
 	},
 	{
-		emoji: "🚫",
-		title: "No Spam",
+		icon: Ban,
+		title: "No spam",
 		description:
-			"Avoid spamming the group with irrelevant messages, excessive self-promotion, or unsolicited advertisements.",
+			"Skip irrelevant messages, repeated self promotion and unsolicited adverts.",
 	},
 	{
-		emoji: "💻",
-		title: "Stay On Topic",
+		icon: Code,
+		title: "Stay on topic",
 		description:
-			"Keep discussions focused on technology, development, and related professional topics.",
+			"Keep conversations about technology, software development and the work around it.",
 	},
 	{
-		emoji: "🔒",
-		title: "Respect Privacy",
+		icon: Lock,
+		title: "Respect privacy",
 		description:
-			"Don't share personal information of other members without their consent. What's shared in the group stays in the group.",
+			"Never share another member's personal details without their consent. What is shared in the group stays in the group.",
 	},
 	{
-		emoji: "🎓",
-		title: "Share Knowledge",
+		icon: GraduationCap,
+		title: "Share knowledge",
 		description:
-			"Help fellow developers by sharing knowledge, resources, and constructive feedback.",
+			"Help other developers with resources, answers and honest feedback.",
 	},
 	{
-		emoji: "📝",
-		title: "Use Proper Language",
+		icon: Languages,
+		title: "Use clear language",
 		description:
-			"Communicate in English or Swahili. Use clear, professional language and avoid excessive use of slang.",
+			"Write in English or Swahili. Keep it clear and professional, with light use of slang.",
 	},
 	{
-		emoji: "❓",
-		title: "Ask Smart Questions",
+		icon: CircleHelp,
+		title: "Ask good questions",
 		description:
-			"Before asking a question, search if it has been answered before. Provide context and details when seeking help.",
+			"Search before you ask. When you need help, include context, what you tried and the exact error.",
 	},
 	{
-		emoji: "🔗",
-		title: "Share Responsibly",
+		icon: Link,
+		title: "Share links responsibly",
 		description:
-			"When sharing links or resources, ensure they are safe, relevant, and add value to the community.",
+			"Only post links that are safe, relevant and useful to the community.",
 	},
 	{
-		emoji: "🔔",
-		title: "No @everyone Mentions",
-		description: "Avoid using @everyone mentions.",
+		icon: AtSign,
+		title: "No @everyone mentions",
+		description: "Mentioning everyone notifies hundreds of people. Avoid it.",
 	},
 	{
-		emoji: "🎯",
-		title: "Quality Over Quantity",
+		icon: Target,
+		title: "Quality over quantity",
 		description:
-			"Focus on meaningful contributions rather than flooding the chat with messages.",
+			"One thoughtful message beats ten quick ones. Avoid flooding the chat.",
 	},
 	{
-		emoji: "💬",
-		title: "Give Constructive Feedback",
+		icon: MessageSquareText,
+		title: "Keep feedback constructive",
 		description:
-			"When providing feedback or code reviews, be constructive and helpful. Focus on the solution, not the person.",
+			"When reviewing code or ideas, focus on the solution, never the person.",
 	},
 ];
-
-export const getAllRules = (): Rule[] => {
-	return rules;
-};
