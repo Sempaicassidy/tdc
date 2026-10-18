@@ -47,7 +47,7 @@ There is no backend and no database. Every member lives in one file, [`data/memb
 
 ### Skills
 
-Skills are grouped under `languages`, `frontend`, `backend`, `mobile`, `design`, `devops`, `data` and `ai`. The allowed values for each group live in [`data/skills.ts`](data/skills.ts), so your editor autocompletes them and the build fails on a typo. This keeps tags consistent across members, which is what makes the filter tags under the search bar work.
+Skills are grouped under `languages`, `frontend`, `backend`, `mobile`, `desktop`, `design`, `devops`, `data` and `ai`. The allowed values for each group live in [`data/skills.ts`](data/skills.ts), so your editor autocompletes them and the build fails on a typo. This keeps tags consistent across members, which is what makes the filter tags under the search bar work.
 
 If your skill is missing, add it to the right list in `data/skills.ts` in the same pull request.
 
