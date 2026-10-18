@@ -383,4 +383,11 @@ export const members: Member[] = [
 		openToWork: true,
 		hireContact: "abdulkarimabbas088@gmail.com",
 	},
+	{
+		name: "Elisha Gerson",
+		github: "somebody1011",
+		links: {
+			website: "https://somebody1011.github.io/",
+		},
+	},
 ];
