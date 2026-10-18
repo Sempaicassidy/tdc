@@ -364,34 +364,23 @@ export const members: Member[] = [
 		},
 	},
 	{
-  name: "Abdulkarim Hassan",
-  github: "Flitchen",
-  title: "Full-Stack Software Developer",
-  location: "Dar es Salaam, Tanzania",
-  bio: "Full-stack software developer specializing in building scalable web, mobile, and desktop applications. Passionate about creating impactful SaaS products, solving real-world problems and delivering seamless user experiences.",
-  skills: {
-    languages: ["JavaScript", "TypeScript", "PHP", "SQL"],
-    frontend: [
-      "React",
-      "Next.js",
-      "React Native",
-      "Expo",
-      "Tailwind CSS"
-    ],
-    backend: [
-      "Node.js",
-      "NestJS",
-      "Laravel",
-	  "REST APIs",
-      "Prisma ORM"
-    ],
-    databases: ["MySQL", "PostgreSQL", "MongoDB"],
-    desktop: ["Tauri"],
-  },
-  links: {
-    website: "https://flitchen.dev",
-  },
-  openToWork: true,
-  hireContact: "abdulkarimabbas088@gmail.com"
-}
+		name: "Abdulkarim Hassan",
+		github: "Flitchen",
+		title: "Full-Stack Software Developer",
+		location: "Dar es Salaam, Tanzania",
+		bio: "Full-stack software developer specializing in building scalable web, mobile, and desktop applications. Passionate about creating impactful SaaS products, solving real-world problems and delivering seamless user experiences.",
+		skills: {
+			languages: ["JavaScript", "TypeScript", "PHP", "SQL"],
+			frontend: ["React", "Next.js", "Tailwind CSS"],
+			backend: ["Node.js", "NestJS", "Laravel", "REST APIs", "Prisma ORM"],
+			mobile: ["React Native", "Expo"],
+			data: ["MySQL", "PostgreSQL", "MongoDB"],
+			desktop: ["Tauri"],
+		},
+		links: {
+			website: "https://flitchen.dev",
+		},
+		openToWork: true,
+		hireContact: "abdulkarimabbas088@gmail.com",
+	},
 ];
