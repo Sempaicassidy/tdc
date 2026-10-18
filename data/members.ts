@@ -390,4 +390,11 @@ export const members: Member[] = [
 			website: "https://somebody1011.github.io/",
 		},
 	},
+	{
+		name: "YASINI KASIDI",
+		github: "Sempaicassidy",
+		links: {
+			website: "https://www.haulaenterprises.co.tz",
+		},
+	},
 ];
